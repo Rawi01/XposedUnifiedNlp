@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 
 public class Settings extends Activity {
@@ -91,7 +92,7 @@ public class Settings extends Activity {
                 button.setEnabled(true);
             }
         };
-        checkWorkingTask.execute(steps.toArray(new CheckStep[steps.size()]));
+        checkWorkingTask.executeOnExecutor(Executors.newSingleThreadExecutor(), steps.toArray(new CheckStep[steps.size()]));
     }
 
 }
