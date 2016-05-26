@@ -20,7 +20,7 @@ Otherwise have a look at [#1](https://github.com/Rawi01/XposedUnifiedNlp/issues/
 ### It doesn't work
 
 Check that you
-* installed `UnifiedNlp.apk` and not `NetworkLocation.apk` or `LegacyNetworkLocation.apk`. If you installed UnifiedNlp vie F-Droid you have to replace it with the correct version.
+* installed `UnifiedNlp.apk` and not `NetworkLocation.apk` or `LegacyNetworkLocation.apk`. If you installed UnifiedNlp via F-Droid you have to use [µg UnifiedNlp (GAPPS)](https://f-droid.org/repository/browse/?fdid=org.microg.nlp).
 * activated the backends
 * activated network-based geolocation in Settings->Location
 
