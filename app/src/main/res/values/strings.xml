@@ -7,5 +7,6 @@
     <string name="action_settings">Settings</string>
     <string name="button_check_settings">Check Settings</string>
     <string name="button_check_settings_checking">Checking...</string>
+    <string name="dummy_backend">Dummy Backend</string>
 
 </resources>

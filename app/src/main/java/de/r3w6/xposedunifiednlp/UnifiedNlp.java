@@ -4,6 +4,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.XResources;
+import android.os.Build;
+import android.os.UserHandle;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -28,12 +30,18 @@ public class UnifiedNlp implements IXposedHookZygoteInit, IXposedHookLoadPackage
         if(!lpparam.packageName.equals("com.android.settings"))
             return;
 
-        XposedHelpers.findAndHookMethod("com.android.settings.location.SettingsInjector", lpparam.classLoader, "parseServiceInfo", ResolveInfo.class, PackageManager.class, new XC_MethodHook() {
+        XC_MethodHook methodHook = new XC_MethodHook() {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 ResolveInfo ri = (ResolveInfo) param.args[0];
                 ri.serviceInfo.applicationInfo.flags |= ApplicationInfo.FLAG_SYSTEM;
             }
-        });
+        };
+
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+            XposedHelpers.findAndHookMethod("com.android.settings.location.SettingsInjector", lpparam.classLoader, "parseServiceInfo", ResolveInfo.class, PackageManager.class, methodHook);
+        } else {
+            XposedHelpers.findAndHookMethod("com.android.settings.location.SettingsInjector", lpparam.classLoader, "parseServiceInfo", ResolveInfo.class, UserHandle.class, PackageManager.class, methodHook);
+        }
     }
 }

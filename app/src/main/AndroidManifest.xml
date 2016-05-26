@@ -29,6 +29,16 @@
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".DummyBackend"
+            android:label="@string/dummy_backend"
+            android:exported="true"
+            android:permission="android.permission.ACCESS_COARSE_LOCATION">
+            <intent-filter>
+                <action android:name="org.microg.nlp.LOCATION_BACKEND" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
