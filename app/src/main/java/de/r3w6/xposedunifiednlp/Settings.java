@@ -1,9 +1,12 @@
 package de.r3w6.xposedunifiednlp;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -38,12 +41,22 @@ public class Settings extends Activity {
         });
 
         initCheckSteps();
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+
+        }
+
     }
 
     private void initCheckSteps() {
         steps.add(new PackageCheckStep(this));
         steps.add(new NetworkLocationCheckStep(this));
         steps.add(new LocationCheckStep(this));
+        steps.add(new PlayServiceLocationCheckStep(this));
     }
 
     private void startCheck() {

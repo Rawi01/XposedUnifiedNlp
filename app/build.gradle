@@ -23,7 +23,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 4
-        versionName "1.0.4-EXPERIMENTAL"
+        versionName "1.0.5-EXPERIMENTAL"
     }
 }
 
@@ -31,6 +31,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'org.microg:unifiednlp-api:1.5.3'
+    compile 'com.google.android.gms:play-services-location:9.2.0'
 
     provided 'de.robv.android.xposed:api:82'
 }

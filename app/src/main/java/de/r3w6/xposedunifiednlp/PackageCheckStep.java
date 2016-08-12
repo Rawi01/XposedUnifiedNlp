@@ -17,7 +17,7 @@ class PackageCheckStep extends CheckStep {
     @Override
     public void runStep() {
         try {
-            context.getPackageManager().getPackageInfo("org.microg.nlp", PackageManager.GET_ACTIVITIES);
+            context.getPackageManager().getPackageInfo("org.microg.gms", PackageManager.GET_ACTIVITIES);
             setState(StepState.SUCCESS);
         } catch (PackageManager.NameNotFoundException e) {
             setState(StepState.FAIL);
@@ -26,6 +26,6 @@ class PackageCheckStep extends CheckStep {
 
     @Override
     public String getSolution() {
-        return "Please download and install the latest UnifiedNlp.apk from the UnifiedNlp release page.";
+        return "Please download and install the latest microG Core for GAPPS devices.";
     }
 }
